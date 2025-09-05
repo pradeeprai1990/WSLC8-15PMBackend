@@ -2,9 +2,39 @@ let express = require("express")
 require("dotenv").config()
 let App = express()
 
+
 App.use(express.json()) //body Data
 
-App.post("/login", (req, res) => {
+
+let checkToken = (req, res, next) => {
+
+    //Case 1
+    if (req.query.token == "" || req.query.token == undefined || req.query.token == null) {
+        let obj = {
+            status: 0,
+            msg: "Please send the token",
+        }
+        return res.send(obj)
+    }
+    //Case 2
+    if(req.query.token!=process.env.TOKEN){
+        let obj = {
+            status: 0,
+            msg: "Please send correct  token value",
+        }
+        return res.send(obj)
+    }
+
+
+    next()
+}
+
+// App.use(checkToken) //App all API
+
+
+
+
+App.post("/login",(req, res) => {
 
     let { username, password } = req.body;
 
@@ -20,12 +50,9 @@ App.post("/login", (req, res) => {
 
 })
 
-App.get("/product", (req, res) => {
-
+App.get("/product",     (req, res) => {
     let { title } = req.query //o
-
-    //  console.log(queryData);
-
+    //console.log(queryData);
     let product = [
         {
             title: "Iphone",
@@ -45,7 +72,7 @@ App.get("/product", (req, res) => {
         product = product.filter(
             (v) =>
                 v.title.toLowerCase().includes(title.toLowerCase())
-            )
+        )
     }
 
     let obj = {
@@ -56,6 +83,17 @@ App.get("/product", (req, res) => {
     res.status(200).json(obj)
 })
 
+
+App.get("/product-details/:id", (req, res) => {
+
+    let { id } = req.params; //Object
+
+    let obj = {
+        status: true,
+        data: "Product Details"
+    }
+    res.send(obj)
+})
 App.listen(process.env.PORT ?? 8001, () => {
     console.log("Server Start");
 
