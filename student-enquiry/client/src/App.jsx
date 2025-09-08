@@ -4,6 +4,7 @@ import { useEffect } from "react"
 
 function App() {
   let [studentList, setStudentList] = useState([])
+  let [editData,setEditdata]=useState(null)
   let saveEnquiry = (e) => {
     e.preventDefault()
 
@@ -12,7 +13,25 @@ function App() {
       email: e.target.email.value,
       phone: e.target.phone.value
     }
-    axios.post(`http://localhost:8000/student/insert`, insertObj)
+
+    if(editData){
+      //Update Query
+      axios.put(`http://localhost:8000/student/update/${editData._id}`, insertObj)
+      .then((res) => res.data)
+      .then((finalRes) => {
+        console.log(finalRes);
+        setEditdata(null)
+        getStudentList()
+        e.target.reset()
+      })
+      .catch((err) => {
+        console.log(err);
+
+      })
+
+    }
+    else{
+      axios.post(`http://localhost:8000/student/insert`, insertObj)
       .then((res) => res.data)
       .then((finalRes) => {
         console.log(finalRes);
@@ -23,6 +42,9 @@ function App() {
         console.log(err);
 
       })
+    }
+
+   
 
 
 
@@ -40,6 +62,25 @@ function App() {
       })
   }
 
+  let deleteStudent=(id)=>{
+     if(confirm("Are you sure want to delete?")){
+        axios.delete(`http://localhost:8000/student/delete/${id}`)
+        .then((res)=>{
+          console.log(res);
+          getStudentList()
+        })
+     }
+  }
+
+
+  let editDetails=(id)=>{
+    axios.get(`http://localhost:8000/student/details/${id}`)
+    .then((res)=>res.data)
+    .then((finalRes)=>{
+      setEditdata(finalRes.data);
+      
+    })
+  }
   useEffect(() => {
     getStudentList()
   }, [])
@@ -57,20 +98,21 @@ function App() {
               <form onSubmit={saveEnquiry} className="space-y-3">
                 <div>
                   <label className="block text-sm text-gray-700 mb-1">Full Name</label>
-                  <input type="text" placeholder="Enter full name" className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500" name="fullName" />
+                  <input defaultValue={ editData ? editData.fullName : ''  }  type="text" placeholder="Enter full name" className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500" name="fullName" />
                 </div>
                 <div>
                   <label className="block text-sm text-gray-700 mb-1">Email</label>
-                  <input type="email" placeholder="name@example.com" className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500" name="email" />
+                  <input defaultValue={ editData ? editData.email : ''  } type="email" placeholder="name@example.com" className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500" name="email" />
                 </div>
                 <div>
                   <label className="block text-sm text-gray-700 mb-1">Phone</label>
-                  <input type="tel" placeholder="9876543210" className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500" name="phone" />
+                  <input defaultValue={ editData ? editData.phone : ''  } type="tel" placeholder="9876543210" className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500" name="phone" />
                 </div>
 
                 <div className="pt-1">
                   <button type="submit" className="w-full rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    Submit Enquiry
+                    {editData ? "Update " : "Insert " }
+                     Enquiry
                   </button>
                 </div>
               </form>
@@ -115,8 +157,8 @@ function App() {
                               </td>
 
                               <td className="px-3 py-2 text-gray-600">
-                                <button className="bg-red-500 text-white p-2 mr-3">Delete</button>
-                                <button className="bg-red-500  text-white  p-2">Edit</button>
+                                <button onClick={()=>deleteStudent(obj._id)} className="bg-red-500 text-white p-2 mr-3">Delete</button>
+                                <button  onClick={()=>editDetails(obj._id)} className="bg-red-500  text-white  p-2">Edit</button>
                               </td>
                             </tr>
                           )
