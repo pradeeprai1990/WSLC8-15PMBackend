@@ -1,4 +1,5 @@
 let express=require("express")
+let mongoose=require("mongoose")
 require("dotenv").config()
 let App=express()
 let cors=require("cors")
@@ -11,4 +12,11 @@ App.use("/admin",adminRoutes)
 
 
 //http://localhost:8000
-App.listen("8000")
+mongoose.connect(process.env.DBCONNECTION)
+.then((res)=>{
+    App.listen(process.env.PORT)
+})
+
+// App.listen("8000",()=>{
+
+// })
