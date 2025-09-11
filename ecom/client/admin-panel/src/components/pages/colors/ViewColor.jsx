@@ -1,13 +1,30 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import BreadCrumb from '../../common/BreadCrumb'
 import { FaSearchengin } from "react-icons/fa6";
 import { BiSolidVolume } from "react-icons/bi";
 import { ImVolumeMute2 } from "react-icons/im";
 import { LuPencilLine } from "react-icons/lu";
+import axios from 'axios';
 
 export default function ViewColor() {
     let funObj = "View Color"
     let [search, setSearch] = useState(false)
+    let [colorData, setColorData] = useState([])
+    let apiBaseUrl = import.meta.env.VITE_APIBASEURL
+
+    let getColor = () => {
+        axios.get(`${apiBaseUrl}color/view`)
+            .then((res) => res.data)
+            .then((finalRes) => {
+                setColorData(finalRes.colorData);
+            })
+    }
+
+
+    useEffect(() => {
+        getColor()
+    }, [])
+
     return (
         <div className='mx-[20px]'>
             <BreadCrumb funObj={funObj} />
@@ -62,27 +79,56 @@ export default function ViewColor() {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="bg-white dark:bg-gray-800">
+                            {
 
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white flex gap-[10px] items-center">
-                                    <input type='checkbox' />
-                                    <h3 className='text-[14px]'>Name</h3>
-                                </th>
+                                colorData.length >= 1 ?
 
-                                <td class="px-6 py-4 text-center">
-                                    #cccc
-                                </td>
-                                <td class="px-6 py-4 text-center">
-                                    4
-                                </td>
+                                    colorData.map((colorObj, index) => {
+                                        return (
+                                            <tr class="bg-white dark:bg-gray-800">
 
-                                <td class="px-6 py-4 text-center">
-                                    <button className='p-[10px_16px] bg-blue-500 text-white text-[15px] rounded-[8px] cursor-pointer font-serif'>Active</button>
-                                </td>
-                                <td class="px-6 py-4 flex justify-center">
-                                    <LuPencilLine className='p-[5px] rounded-[50%] bg-blue-500 text-white text-[35px] cursor-pointer  '/>
-                                </td>
-                            </tr>
+                                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white flex gap-[10px] items-center">
+                                                    <input type='checkbox' />
+                                                    <h3 className='text-[14px]'>
+                                                        {colorObj.colorName}
+                                                    </h3>
+                                                </th>
+
+                                                <td class="px-6 py-4 text-center">
+                                                    {colorObj.colorCode}
+                                                </td>
+                                                <td class="px-6 py-4 text-center">
+                                                    {colorObj.colorOrder}
+                                                </td>
+
+                                                <td class="px-6 py-4 text-center">
+
+                                                    {
+                                                        colorObj.colorStatus ?
+                                                            <button className='p-[10px_16px] bg-green-500 text-white text-[15px] rounded-[8px] cursor-pointer font-serif'>Active</button>
+                                                            :
+                                                            <button className='p-[10px_16px] bg-red-500 text-white text-[15px] rounded-[8px] cursor-pointer font-serif'>deActive</button>
+
+                                                    }
+
+
+                                                </td>
+                                                <td class="px-6 py-4 flex justify-center">
+                                                    <LuPencilLine className='p-[5px] rounded-[50%] bg-blue-500 text-white text-[35px] cursor-pointer  ' />
+                                                </td>
+                                            </tr>
+                                        )
+                                    })
+
+
+                                    :
+                                    <tr>
+                                        <td colSpan={6} className='text-center py-4'>No Data Found</td>
+                                    </tr>
+
+
+                            }
+
                         </tbody>
                     </table>
                 </div>

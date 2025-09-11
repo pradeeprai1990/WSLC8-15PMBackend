@@ -14,7 +14,10 @@ let colorSchema=mongoose.Schema(
          maxLength:30,
        } ,
        colorOrder:Number,
-       colorStatus:Boolean
+       colorStatus:{
+        type:Boolean,
+        default:true
+       }
     }
 )
 let colorModel=mongoose.model("color",colorSchema)

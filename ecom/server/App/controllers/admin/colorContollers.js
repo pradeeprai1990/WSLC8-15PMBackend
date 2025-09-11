@@ -85,7 +85,7 @@ let colorDelete = (req, res) => {
 
 }
 let colorUpdate = async (req, res) => {
-
+    
     let { id } = req.params;
     let obj
     try {
@@ -126,8 +126,6 @@ let colorUpdate = async (req, res) => {
         }
         res.send(obj)
     }
-
-
 
 }
 
