@@ -1,6 +1,7 @@
 let express=require("express")
-const { colorCreate, colorView, colorDelete, colorUpdate, multiDelete } = require("../../controllers/admin/colorContollers")
+const { colorCreate, colorView, colorDelete, colorUpdate, multiDelete, singleData, statusUpdate } = require("../../controllers/admin/colorContollers")
 let colorRoutes=express.Router()
+
 
 
 colorRoutes.post("/create",colorCreate)
@@ -11,8 +12,12 @@ colorRoutes.delete("/delete/:id",colorDelete)
 
 colorRoutes.post("/multi-delete",multiDelete)
 
+colorRoutes.post("/status-update",statusUpdate)
 
-colorRoutes.put("/update",colorUpdate)
+colorRoutes.get("/edit-color/:id",singleData)
+
+colorRoutes.put("/update/:id",colorUpdate)
+
 
 
 module.exports={colorRoutes}

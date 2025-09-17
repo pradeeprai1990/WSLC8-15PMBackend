@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import BreadCrumb from '../../common/BreadCrumb'
 import { IoCloudUploadOutline } from 'react-icons/io5'
 
 export default function AddCategory() {
+
+  let [image, setImage] = useState(`https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/495px-No-Image-Placeholder.svg.png?20200912122019`)
+
+
   let funObj = "Add Category"
   return (
     <div className='mx-[20px]'>
@@ -18,15 +22,19 @@ export default function AddCategory() {
           <form>
             <div className='grid grid-cols-[30%_auto] gap-4'>
               <div>
+
+
                 <div className="flex items-center justify-center w-full">
                   <label for="dropzone-file" className="p-[20px] flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50  dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                    <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                      <IoCloudUploadOutline className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" />
-
-                      <p className="mb-2 text-sm text-gray-500 dark:text-gray-400"><span className="font-semibold">Click to upload</span> or drag and drop</p>
-                      <p className="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+                    <div className="flex relative flex-col items-center justify-center pt-5 pb-6">
+                      <img src={image} width={200} alt="" />
+                      <button onClick={() => setImage('https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/495px-No-Image-Placeholder.svg.png?20200912122019')} type='button' className='absolute right-0 top-0 bg-red-200'>Remove</button>
                     </div>
-                    <input id="dropzone-file" type="file" className="hidden" />
+                    <input onChange={(e) => {
+                      setImage(URL.createObjectURL(e.target.files[0]))
+                      //object
+
+                    }} id="dropzone-file" type="file" className="hidden" />
                   </label>
                 </div>
               </div>

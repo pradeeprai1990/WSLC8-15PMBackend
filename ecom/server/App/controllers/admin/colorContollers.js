@@ -52,10 +52,31 @@ let colorCreate = async (req, res) => {
 
 let colorView = async (req, res) => {
 
-    let colorData = await colorModel.find()
+    ///skip(0) Start
+    //limit(5) Limit
+    //Frontend Page Number Send
+    // page key send  ->query
+    let skip=0
+    let limit=5
+    
+    if(req.query.limit){
+        limit=req.query.limit;
+        
+    }
+
+    if(req.query.page){
+        skip=(req.query.page-1)*limit
+        
+    }
+    let colorData = await colorModel.find().skip(skip).limit(limit) //5
+
+    let colorDatalength = await colorModel.find() //[20]
+
     let obj = {
         status: 1,
-        colorData
+        colorData,
+        length:colorDatalength.length, //Number of Rows-13
+        totPages: Math.ceil(colorDatalength.length/limit)//2.3=3
     }
 
     res.send(obj)
@@ -151,4 +172,51 @@ let multiDelete = (req,res) => {
         })
 }
 
-module.exports = { colorCreate, colorView, colorDelete, colorUpdate, multiDelete }
+
+let singleData=async (req,res)=>{
+    let {id}=req.params;
+     let colorData = await colorModel.findOne({_id:id})
+    let obj = {
+        status: 1,
+        colorData
+    }
+
+    res.send(obj)
+}
+
+
+let statusUpdate=async (req,res)=>{
+   let { ids } = req.body //Array   [ id1,id2 ] 
+
+//    for(let id of ids){
+//         //Data Get ->Old Status
+//         let oldata=await colorModel.findOne({_id:id})
+//         let currentStatu=oldata.colorStatus
+//          await colorModel.updateOne({_id:id},{$set:{
+//             colorStatus:!currentStatu
+//          }})
+//    }
+//
+   let updateRes=await  colorModel.updateMany(
+        { _id:ids },
+        [
+            {
+                $set:{
+                   colorStatus:{
+                    $not:"$colorStatus"
+                   } 
+                }
+            }
+        ]
+   )
+    let obj = {
+        status: 1,
+        msg:"Status updated",
+     
+    }
+
+    res.send(obj)
+
+
+}
+module.exports = { colorCreate, colorView, colorDelete, colorUpdate, multiDelete,singleData,statusUpdate }

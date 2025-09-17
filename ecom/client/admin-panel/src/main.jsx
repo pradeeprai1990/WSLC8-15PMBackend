@@ -1,5 +1,6 @@
 import { createRoot } from 'react-dom/client'
 import './index.css'
+import 'react-responsive-pagination/themes/classic-light-dark.css';
 import { BrowserRouter, Route, Routes } from 'react-router'
 import Layout from './components/common/Layout'
 import Home from './Home'
@@ -43,8 +44,13 @@ createRoot(rootElement).render(
       <Route element={<Layout />}>
         
         <Route path='/home' element={<Home/>} />
-        <Route path='/addColor' element={<AddColor />} />
+
+        <Route path='/addColor/' element={<AddColor />} />
+        <Route path='/edit-color/:id' element={<AddColor />} />
         <Route path='/viewColor' element={<ViewColor />} />
+
+
+
         <Route path='/addCountry' element={<AddCountry />} />
         <Route path='/viewCountry' element={<ViewCountry />} />
         <Route path='/contactEnquiry' element={<ContactEnquiry />} />

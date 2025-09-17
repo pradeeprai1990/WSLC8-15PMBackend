@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import BreadCrumb from '../../common/BreadCrumb'
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
-import { useNavigate } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 export default function AddColor() {
-  let  navigate=useNavigate()
+
+  let { id } = useParams() //Object = { id:value}
+
+  let navigate = useNavigate()
   let [formValue, setformValue] = useState({
     colorName: '',
     colorCode: '',
@@ -15,26 +18,54 @@ export default function AddColor() {
 
   let colorSave = (e) => {
     e.preventDefault()
-    axios.post(`${apiBaseUrl}color/create`, formValue)
-      .then((res) => res.data)
-      .then((finalRes) => {
-        if (finalRes.status == 1) {
-          toast.success(finalRes.msg)
-          setformValue({
-            colorName: '',
-            colorCode: '',
-            colorOrder: ''
-          })
-          setTimeout(()=>{
-            navigate("/viewColor")
-          },3000)
-        }
-        else {
-          toast.error(finalRes.errorMessage)
-        }
+    if (id) {
+      //Update
+      axios.put(`${apiBaseUrl}color/update/${id}`, formValue)
+        .then((res) => res.data)
+        .then((finalRes) => {
+          if (finalRes.status == 1) {
+            toast.success(finalRes.msg)
+            setformValue({
+              colorName: '',
+              colorCode: '',
+              colorOrder: ''
+            })
+            setTimeout(() => {
+              navigate("/viewColor")
+            }, 3000)
+          }
+          else {
+            toast.error(finalRes.errorMessage)
+          }
 
-      })
-    console.log(formValue);
+        })
+      console.log(formValue);
+    }
+    else {
+      //Insert
+      axios.post(`${apiBaseUrl}color/create`, formValue)
+        .then((res) => res.data)
+        .then((finalRes) => {
+          if (finalRes.status == 1) {
+            toast.success(finalRes.msg)
+            setformValue({
+              colorName: '',
+              colorCode: '',
+              colorOrder: ''
+            })
+            setTimeout(() => {
+              navigate("/viewColor")
+            }, 3000)
+          }
+          else {
+            toast.error(finalRes.errorMessage)
+          }
+
+        })
+      console.log(formValue);
+    }
+
+
 
   }
 
@@ -47,7 +78,34 @@ export default function AddColor() {
     setformValue(obj)
   }
 
-  let funObj = "Add Color"
+  let funObj = id ? "Edit Color" : "Add Color"
+
+  useEffect(() => {
+
+    setformValue(
+      {
+        colorName: '',
+        colorCode: '',
+        colorOrder: ''
+      }
+    )
+
+    if (id) {
+      axios.get(`${apiBaseUrl}color/edit-color/${id}`)
+        .then((res) => res.data)
+        .then((finalRes) => {
+
+          setformValue(
+            {
+              colorName: finalRes.colorData.colorName,
+              colorCode: finalRes.colorData.colorCode,
+              colorOrder: finalRes.colorData.colorOrder,
+            }
+          )
+        })
+    }
+  }, [id])
+
   return (
     <div className='mx-[20px]'>
       <ToastContainer />
@@ -73,7 +131,8 @@ export default function AddColor() {
               onChange={getValueorSetvalue}
 
               type='number' value={formValue.colorOrder} name='colorOrder' className='w-full p-[8px] text-[14px] text-gray-400 border border-gray-400 rounded-[5px]' placeholder='color order' />
-            <button className='p-[10px_16px] rounded-[8px] text-center text-[14px] bg-sky-500  font-medium text-white my-[20px] cursor-pointer'>Add Color</button>
+            <button className='p-[10px_16px] rounded-[8px] text-center text-[14px] bg-sky-500  font-medium text-white my-[20px] cursor-pointer'>
+              {id ? "Edit" : "Add"} Color</button>
           </form>
         </div>
 
