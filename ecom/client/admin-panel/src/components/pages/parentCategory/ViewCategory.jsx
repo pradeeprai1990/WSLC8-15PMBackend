@@ -1,13 +1,41 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import BreadCrumb from '../../common/BreadCrumb'
 import { FaSearchengin } from "react-icons/fa6";
 import { BiSolidVolume } from "react-icons/bi";
 import { ImVolumeMute2 } from "react-icons/im";
 import { LuPencilLine } from "react-icons/lu";
+import axios from 'axios';
 
 export default function ViewCategory() {
     let funObj = "View Category"
     let [search, setSearch] = useState(false)
+    let [currentPage, setCurrentPage] = useState(1)
+    let [limit, setLimit] = useState(5)
+
+    let [categoryData, setCategoryData] = useState([])
+    let [staticPath, setStaticPath] = useState([])
+
+    let [totalPages, settotalPages] = useState(0) //3
+    let apiBaseUrl = import.meta.env.VITE_APIBASEURL
+    let getCategory = () => {
+        axios.get(`${apiBaseUrl}category/view`, {
+            params: {
+                page: currentPage,
+                limit
+            }
+        })
+            .then((res) => res.data)
+            .then((finalRes) => {
+                setCategoryData(finalRes.categoryData);
+                setStaticPath(finalRes.staticPath)
+                settotalPages(finalRes.totPages) //3
+            })
+    }
+
+    useEffect(() => {
+        getCategory()
+    }, [])
+
     return (
         <div className='mx-[20px]'>
             <BreadCrumb funObj={funObj} />
@@ -44,7 +72,7 @@ export default function ViewCategory() {
 
                                 <th scope="col" class="px-6 py-3 rounded-s-lg flex gap-[10px] items-center ">
                                     <input type='checkbox' />
-                                    <h3>Product name</h3>
+                                    <h3>Category Name</h3>
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-center">
                                     image
@@ -62,27 +90,35 @@ export default function ViewCategory() {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="bg-white dark:bg-gray-800">
+                            {categoryData.map((obj, index) => {
+                                return (
+                                    <tr class="bg-white dark:bg-gray-800">
 
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white flex gap-[10px] items-center">
-                                    <input type='checkbox' />
-                                    <h3 className='text-[14px]'>Name</h3>
-                                </th>
+                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white flex gap-[10px] items-center">
+                                            <input type='checkbox' />
+                                            <h3 className='text-[14px]'>
+                                                {obj.categoryName}
+                                            </h3>
+                                        </th>
 
-                                <td class="px-6 py-4  text-center">
-                                    <img src='#' />
-                                </td>
-                                <td class="px-6 py-4 text-center">
-                                    4
-                                </td>
+                                        <td class="px-6 py-4  text-center">
+                                            <img src={staticPath+obj.categoryImage} width={50} />
+                                        </td>
+                                        <td class="px-6 py-4 text-center">
+                                            4
+                                        </td>
 
-                                <td class="px-6 py-4 text-center">
-                                    <button className='p-[10px_16px] bg-blue-500 text-white text-[15px] rounded-[8px] cursor-pointer font-serif'>Active</button>
-                                </td>
-                                <td class="px-6 py-4 flex justify-center">
-                                    <LuPencilLine className='p-[5px] rounded-[50%] bg-blue-500 text-white text-[35px] cursor-pointer  ' />
-                                </td>
-                            </tr>
+                                        <td class="px-6 py-4 text-center">
+                                            <button className='p-[10px_16px] bg-blue-500 text-white text-[15px] rounded-[8px] cursor-pointer font-serif'>Active</button>
+                                        </td>
+                                        <td class="px-6 py-4 flex justify-center">
+                                            <LuPencilLine className='p-[5px] rounded-[50%] bg-blue-500 text-white text-[35px] cursor-pointer  ' />
+                                        </td>
+                                    </tr>
+                                )
+                            })}
+
+
                         </tbody>
                     </table>
                 </div>

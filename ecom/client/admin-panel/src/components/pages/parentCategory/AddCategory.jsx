@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import BreadCrumb from '../../common/BreadCrumb'
 import { IoCloudUploadOutline } from 'react-icons/io5'
+import axios from 'axios'
 
 export default function AddCategory() {
 
@@ -8,6 +9,18 @@ export default function AddCategory() {
 
 
   let funObj = "Add Category"
+ let apiBaseUrl = import.meta.env.VITE_APIBASEURL
+  let saveCategory=(e)=>{
+     e.preventDefault()
+     let formValue=new FormData(e.target)
+     axios.post(`${apiBaseUrl}category/create`, formValue)
+        .then((res) => res.data)
+        .then((finalRes) => {
+         
+
+        })
+  }
+
   return (
     <div className='mx-[20px]'>
       <BreadCrumb funObj={funObj} />
@@ -19,7 +32,7 @@ export default function AddCategory() {
 
         <div className='m-[20px]'>
 
-          <form>
+          <form onSubmit={saveCategory}>
             <div className='grid grid-cols-[30%_auto] gap-4'>
               <div>
 
@@ -34,15 +47,15 @@ export default function AddCategory() {
                       setImage(URL.createObjectURL(e.target.files[0]))
                       //object
 
-                    }} id="dropzone-file" type="file" className="hidden" />
+                    }} id="dropzone-file"  name='categoryImage'  type="file" className="hidden" />
                   </label>
                 </div>
               </div>
               <div className='w-full'>
                 <h3 className='my-[10px] font-medium text-[14px]'>Category Name</h3>
-                <input type='text' placeholder='Category Name' className=' w-full p-[8px] rounded-[8px] border border-gray-400 text-[14px] text-gray-400' />
+                <input type='text' name='categoryName' placeholder='Category Name' className=' w-full p-[8px] rounded-[8px] border border-gray-400 text-[14px] text-gray-400' />
                 <h3 className='my-[10px] font-medium text-[14px]'>Order</h3>
-                <input type='number' placeholder='Category Name' className=' w-full p-[8px] rounded-[8px] border border-gray-400 text-[14px] text-gray-400' />
+                <input type='number' name='categoryOrder' placeholder='Category Name' className=' w-full p-[8px] rounded-[8px] border border-gray-400 text-[14px] text-gray-400' />
               </div>
             </div>
             <button className='my-[20px] p-[10px_16px] rounded-[8px] text-white text-[16px] font-serif bg-sky-500 cursor-pointer duration-200 hover:bg-black hover:border hover:border-red-500'>Add Category</button>
