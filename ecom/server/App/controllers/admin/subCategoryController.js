@@ -107,6 +107,13 @@ let subcategoryDelete = (req, res) => {
 let subcategoryUpdate = async (req, res) => {
 
     let { id } = req.params;
+    let updObj = { ...req.body }
+    if (req.file) {
+        if (req.file.filename) {
+            updObj['subcategoryImage'] = req.file.filename
+        }
+    }
+
     let obj
     try {
         let subcategoryRes = await subcategoryModel.updateOne(
@@ -114,7 +121,7 @@ let subcategoryUpdate = async (req, res) => {
                 _id: id
             },
             {
-                $set: req.body
+                $set: updObj
             }
         )
 
@@ -177,7 +184,8 @@ let singleData = async (req, res) => {
     let subcategoryData = await subcategoryModel.findOne({ _id: id })
     let obj = {
         status: 1,
-        subcategoryData
+        subcategoryData,
+        staticPath: process.env.SUBCATEGORYIMAGEPATH,
     }
 
     res.send(obj)
@@ -220,11 +228,11 @@ let statusUpdate = async (req, res) => {
 }
 
 
-let parentCategory = async (req,res) => {
+let parentCategory = async (req, res) => {
     let categoryData = await categoryModel.
-    find({ categoryStatus: true })
-    .select('categoryName')
-    
+        find({ categoryStatus: true })
+        .select('categoryName')
+
     //5
     let obj = {
         status: 1,
@@ -234,4 +242,4 @@ let parentCategory = async (req,res) => {
 
     res.send(obj)
 }
-module.exports = {parentCategory, subcategoryCreate, subcategoryView, subcategoryDelete, subcategoryUpdate, multiDelete, singleData, statusUpdate }
+module.exports = { parentCategory, subcategoryCreate, subcategoryView, subcategoryDelete, subcategoryUpdate, multiDelete, singleData, statusUpdate }

@@ -1,6 +1,6 @@
 let express=require("express")
 const multer  = require('multer')
-const { subcategoryCreate, subcategoryView, parentCategory } = require("../../controllers/admin/subcategoryController")
+const { subcategoryCreate, subcategoryView, parentCategory, singleData, subcategoryUpdate } = require("../../controllers/admin/subcategoryController")
 let subcategoryRoutes=express.Router()
 
 const storage=multer.diskStorage({
@@ -20,6 +20,10 @@ subcategoryRoutes.post("/create", upload.single('subcategoryImage'), subcategory
 subcategoryRoutes.get("/view",subcategoryView)
 
 subcategoryRoutes.get("/parent-category",parentCategory)
+subcategoryRoutes.get("/edit-subcategory/:id",singleData)
+
+subcategoryRoutes.put("/update/:id",upload.single('subcategoryImage'),subcategoryUpdate)
+
 
 
 module.exports={subcategoryRoutes}

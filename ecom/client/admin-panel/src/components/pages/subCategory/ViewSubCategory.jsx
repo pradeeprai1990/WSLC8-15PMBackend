@@ -5,6 +5,7 @@ import { BiSolidVolume } from "react-icons/bi";
 import { ImVolumeMute2 } from "react-icons/im";
 import { LuPencilLine } from "react-icons/lu";
 import axios from 'axios';
+import { Link } from 'react-router';
 
 export default function ViewSubCategory() {
   let funObj = "View Sub Category"
@@ -122,7 +123,9 @@ export default function ViewSubCategory() {
                         <button className='p-[10px_16px] bg-blue-500 text-white text-[15px] rounded-[8px] cursor-pointer font-serif'>Active</button>
                       </td>
                       <td class="px-6 py-4 flex justify-center">
+                        <Link to={`/edit-subcategory/${obj._id}`}>
                         <LuPencilLine className='p-[5px] rounded-[50%] bg-blue-500 text-white text-[35px] cursor-pointer  ' />
+                        </Link>
                       </td>
                     </tr>
                   )

@@ -66,8 +66,16 @@ createRoot(rootElement).render(
         <Route path='/viewProducts' element={<ViewProducts />} />
         <Route path='/addSlider' element={<AddSliders />} />
         <Route path='/viewSlider' element={<ViewSliders />} />
+
+
         <Route path='/addSubCategory' element={<AddSubCategory />} />
+        <Route path='/edit-subcategory/:id' element={<AddSubCategory />} />
         <Route path='/viewSubCategory' element={<ViewSubCategory />} />
+
+
+
+
+
         <Route path='/addsubsubCategory' element={<AddSubSubCategory />} />
         <Route path='/viewsubsubcategory' element={<ViewSubSubCategory />} />
         <Route path='/addterms' element={<AddTermsConditions />} />
