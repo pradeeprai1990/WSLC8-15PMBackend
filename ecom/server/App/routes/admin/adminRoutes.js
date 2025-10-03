@@ -5,9 +5,14 @@ const { categoryRoutes } = require("./categoryRoutes")
 const { subcategoryRoutes } = require("./subCategoryRoutes")
 const { subSubcategoryRoutes } = require("./subSubCategoryroutes")
 const { productRoutes } = require("./productRoutes")
+const { adminauthRoutes } = require("./adminauthRoutes")
 
 let adminRoutes=express.Router()
 //http://localhost:8000/admin/color
+
+
+
+adminRoutes.use("/auth",  adminauthRoutes)
 
 
 adminRoutes.use("/color",colorRoutes)

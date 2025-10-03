@@ -4,6 +4,7 @@ require("dotenv").config()
 let App=express()
 let cors=require("cors")
 const { adminRoutes } = require("./App/routes/admin/adminRoutes")
+const { adminModel } = require("./App/models/adminModel")
 App.use(cors())
 App.use(express.json())
 
@@ -18,7 +19,19 @@ App.use("/uploads/subsubcategory",express.static("uploads/subsubcategory"))
 // App.use("uploads/product",express.static("/uploads/product"))
 //http://localhost:8000
 mongoose.connect(process.env.DBCONNECTION)
-.then((res)=>{
+.then(async (res)=>{
+
+    let checkAdmin=await adminModel.find()  //Array
+
+    if(checkAdmin.length==0){
+        await adminModel.insertOne(
+            {
+                adminEmail:process.env.ADMINEMAIL,
+                adminPassword:process.env.ADMINPASSWORD
+            }
+        )
+    }
+
     App.listen(process.env.PORT)
 })
 
