@@ -35,61 +35,64 @@ import AdminProfile from './components/pages/profile/AdminProfile'
 import CompanyProfile from './components/pages/profile/CompanyProfile'
 import ContactEnquiry from './components/pages/enquirys/ContactEnquiry'
 import Login from './Login'
+import MainContext from './context/MainContext';
 
 let rootElement = document.getElementById('root')
 
 createRoot(rootElement).render(
-  <BrowserRouter>
-    <Routes >
-      <Route element={<Layout />}>
-        
-        <Route path='/home' element={<Home/>} />
+  <MainContext>
+    <BrowserRouter>
+      <Routes >
+        <Route element={<Layout />}>
+          
+          <Route path='/home' element={<Home/>} />
 
-        <Route path='/addColor/' element={<AddColor />} />
-        <Route path='/edit-color/:id' element={<AddColor />} />
-        <Route path='/viewColor' element={<ViewColor />} />
-
-
-
-        <Route path='/addCountry' element={<AddCountry />} />
-        <Route path='/viewCountry' element={<ViewCountry />} />
-        <Route path='/contactEnquiry' element={<ContactEnquiry />} />
-        <Route path='/newsLetters' element={<NewsLetters />} />
-        <Route path='/addFaqs' element={<AddFaqs />} />
-        <Route path='/viewFaqs' element={<ViewFaqs />} />
-        <Route path='/addMaterials' element={<AddMeterial />} />
-        <Route path='/viewMaterials' element={<ViewMaterial />} />
-        <Route path='/orders' element={<Orders />} />
-        <Route path='/addCategory' element={<AddCategory />} />
-        <Route path='/viewCategory' element={<ViewCategory />} />
-        <Route path='/addProducts' element={<AddProducts />} />
-        <Route path='/viewProducts' element={<ViewProducts />} />
-        <Route path='/addSlider' element={<AddSliders />} />
-        <Route path='/viewSlider' element={<ViewSliders />} />
-
-
-        <Route path='/addSubCategory' element={<AddSubCategory />} />
-        <Route path='/edit-subcategory/:id' element={<AddSubCategory />} />
-        <Route path='/viewSubCategory' element={<ViewSubCategory />} />
+          <Route path='/addColor/' element={<AddColor />} />
+          <Route path='/edit-color/:id' element={<AddColor />} />
+          <Route path='/viewColor' element={<ViewColor />} />
 
 
 
+          <Route path='/addCountry' element={<AddCountry />} />
+          <Route path='/viewCountry' element={<ViewCountry />} />
+          <Route path='/contactEnquiry' element={<ContactEnquiry />} />
+          <Route path='/newsLetters' element={<NewsLetters />} />
+          <Route path='/addFaqs' element={<AddFaqs />} />
+          <Route path='/viewFaqs' element={<ViewFaqs />} />
+          <Route path='/addMaterials' element={<AddMeterial />} />
+          <Route path='/viewMaterials' element={<ViewMaterial />} />
+          <Route path='/orders' element={<Orders />} />
+          <Route path='/addCategory' element={<AddCategory />} />
+          <Route path='/viewCategory' element={<ViewCategory />} />
+          <Route path='/addProducts' element={<AddProducts />} />
+          <Route path='/viewProducts' element={<ViewProducts />} />
+          <Route path='/addSlider' element={<AddSliders />} />
+          <Route path='/viewSlider' element={<ViewSliders />} />
 
 
-        <Route path='/addsubsubCategory' element={<AddSubSubCategory />} />
-        <Route path='/viewsubsubcategory' element={<ViewSubSubCategory />} />
-        <Route path='/addterms' element={<AddTermsConditions />} />
-        <Route path='/viewTerms' element={<ViewTermsConditions />} />
-        <Route path='/addtestimonials' element={<AddTestimonials />} />
-        <Route path='viewtestimonials' element={<ViewTestimonials />} />
-        <Route path='/viewusers' element={<ViewUsers />} />
-        <Route path='/addwhychoose' element={<AddWhyChoose />} />
-        <Route path='/viewwhychoose' element={<ViewWhyChoose />} />
-        <Route path='/adminprofile' element={<AdminProfile />} />
-        <Route path='/companyprofile' element={<CompanyProfile />} />
-      </Route>
+          <Route path='/addSubCategory' element={<AddSubCategory />} />
+          <Route path='/edit-subcategory/:id' element={<AddSubCategory />} />
+          <Route path='/viewSubCategory' element={<ViewSubCategory />} />
 
-      <Route path='/' element={<Login />} />
-    </Routes>
-  </BrowserRouter>
+
+
+
+
+          <Route path='/addsubsubCategory' element={<AddSubSubCategory />} />
+          <Route path='/viewsubsubcategory' element={<ViewSubSubCategory />} />
+          <Route path='/addterms' element={<AddTermsConditions />} />
+          <Route path='/viewTerms' element={<ViewTermsConditions />} />
+          <Route path='/addtestimonials' element={<AddTestimonials />} />
+          <Route path='viewtestimonials' element={<ViewTestimonials />} />
+          <Route path='/viewusers' element={<ViewUsers />} />
+          <Route path='/addwhychoose' element={<AddWhyChoose />} />
+          <Route path='/viewwhychoose' element={<ViewWhyChoose />} />
+          <Route path='/adminprofile' element={<AdminProfile />} />
+          <Route path='/companyprofile' element={<CompanyProfile />} />
+        </Route>
+
+        <Route path='/' element={<Login />} />
+      </Routes>
+    </BrowserRouter>
+ </MainContext>
 )

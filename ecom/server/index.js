@@ -5,8 +5,12 @@ let App=express()
 let cors=require("cors")
 const { adminRoutes } = require("./App/routes/admin/adminRoutes")
 const { adminModel } = require("./App/models/adminModel")
+const { webRoutes } = require("./App/routes/website/webRoutes")
 App.use(cors())
 App.use(express.json())
+
+//Website Routes
+App.use("/web",webRoutes)
 
 
 //http://localhost:8000/admin

@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import BreadCrumb from "../../common/BreadCrumb";
 import { IoCloudUploadOutline } from "react-icons/io5";
 import axios from "axios";
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+
 export default function AddProducts() {
     let [parentData, setparentData] = useState([])
     let [subcatData, setSubcatData] = useState([])
