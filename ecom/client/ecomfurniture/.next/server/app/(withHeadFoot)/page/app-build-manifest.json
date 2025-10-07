@@ -1,0 +1,31 @@
+{
+  "pages": {
+    "/(withHeadFoot)/page": [
+      "static/chunks/f1361_next_dist_46c77d1c._.js",
+      "static/chunks/eade6_New folder (7)_backend_ecom_client_furniture_src_app_favicon_ico_mjs_df434a96._.js",
+      "static/chunks/f1361_next_dist_client_components_builtin_global-error_9a7f9aa0.js",
+      "static/chunks/[root-of-the-server]__d4bbf248._.css",
+      "static/chunks/8fd4e_19-04-2025_New folder (7)_backend_ecom_client_furniture_src_app_650075bf._.js",
+      "static/chunks/f1361_react-icons_fa_index_mjs_9633c3c9._.js",
+      "static/chunks/f1361_react-icons_fa6_index_mjs_83d5cc33._.js",
+      "static/chunks/f1361_react-icons_io_index_mjs_49ca06d3._.js",
+      "static/chunks/f1361_react-icons_lib_25424562._.js",
+      "static/chunks/f1361_@reduxjs_toolkit_dist_redux-toolkit_modern_mjs_77be3f3d._.js",
+      "static/chunks/f1361_86a6f3ff._.js",
+      "static/chunks/580d7_backend_ecom_client_furniture_src_app_(withHeadFoot)_layout_9a7f9aa0.js",
+      "static/chunks/f1361_69c06a2a._.js",
+      "static/chunks/3d860_New folder_19-04-2025_New folder (7)_backend_ecom_client_furniture_src_ec08d5c8._.js",
+      "static/chunks/f1361_a6b2a00f._.css",
+      "static/chunks/580d7_backend_ecom_client_furniture_src_app_(withHeadFoot)_page_9a6ecdab.js",
+      "static/chunks/[turbopack]_browser_dev_hmr-client_hmr-client_ts_e6b0be32._.js",
+      "static/chunks/f1361_next_dist_compiled_react-dom_5543b083._.js",
+      "static/chunks/f1361_next_dist_compiled_next-devtools_index_e5ea7aec.js",
+      "static/chunks/f1361_next_dist_compiled_3046dbbe._.js",
+      "static/chunks/f1361_next_dist_client_aa901280._.js",
+      "static/chunks/f1361_next_dist_8d28b43e._.js",
+      "static/chunks/f1361_@swc_helpers_cjs_b061ced6._.js",
+      "static/chunks/3d860_New folder_19-04-2025_New folder (7)_backend_ecom_client_furniture_a0ff3932._.js",
+      "static/chunks/88e7d_New folder_19-04-2025_New folder (7)_backend_ecom_client_furniture_26433281._.js"
+    ]
+  }
+}

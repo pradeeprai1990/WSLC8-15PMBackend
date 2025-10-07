@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
+    {"offset": {"line": 15, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/Sayeed/Desktop/next/furniture/src/app/%28withHeadFoot%29/product/page.js"],"sourcesContent":["import React from 'react'\r\n// import ProductFilter from './ProductFilter'\r\n// import ProductList from './ProductList'\r\n// import { productApi } from '@/api-services/ProductServices'\r\n// import Breadcrumb from '../common/Breadcrumb'\r\n\r\nexport default async function Products() {\r\n\r\n    let productApiData = await productApi()\r\n    let pageName = 'Product Listing'\r\n    return (\r\n        <div>\r\n            <Breadcrumb pageName={pageName} />\r\n            <div className='max-w-[1320px] mt-[50px] mx-auto grid grid-cols-[20%_auto] gap-5'>\r\n                <ProductFilter />\r\n                <ProductList data={productApiData} />\r\n            </div>\r\n        </div>\r\n    )\r\n}\r\n"],"names":[],"mappings":";;;;;AAAA;;;AAMe,eAAe;IAE1B,IAAI,iBAAiB,MAAM;IAC3B,IAAI,WAAW;IACf,qBACI,8OAAC;;0BACG,8OAAC;gBAAW,UAAU;;;;;;0BACtB,8OAAC;gBAAI,WAAU;;kCACX,8OAAC;;;;;kCACD,8OAAC;wBAAY,MAAM;;;;;;;;;;;;;;;;;;AAInC","debugId":null}}]
+}

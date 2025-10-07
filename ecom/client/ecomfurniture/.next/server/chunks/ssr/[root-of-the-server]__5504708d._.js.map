@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
+    {"offset": {"line": 15, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/Sayeed/Desktop/next/furniture/src/app/%28withoutHeadFoot%29/login/page.js"],"sourcesContent":["import React from 'react'\r\n//import Login from './Login'\r\n\r\nexport default function LoginPage() {\r\n    let pageName = 'My Account'\r\n    return (\r\n        <div>\r\n            alam\r\n        </div>\r\n    )\r\n}\r\n"],"names":[],"mappings":";;;;;AAAA;;;AAGe,SAAS;IACpB,IAAI,WAAW;IACf,qBACI,8OAAC;kBAAI;;;;;;AAIb","debugId":null}}]
+}

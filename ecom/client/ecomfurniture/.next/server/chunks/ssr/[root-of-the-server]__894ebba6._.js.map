@@ -1,0 +1,8 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
+    {"offset": {"line": 15, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/Sayeed/Desktop/next/furniture/src/app/%28withHeadFoot%29/cart/CartList.jsx"],"sourcesContent":["import React from 'react'\r\n\r\nexport default function CartList() {\r\n  return (\r\n    <div>CartList</div>\r\n  )\r\n}\r\n"],"names":[],"mappings":";;;;;AAAA;;;AAEe,SAAS;IACtB,qBACE,8OAAC;kBAAI;;;;;;AAET","debugId":null}},
+    {"offset": {"line": 36, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/Sayeed/Desktop/next/furniture/src/app/%28withHeadFoot%29/cart/page.js"],"sourcesContent":["import React from 'react'\r\nimport CartList from './CartList'\r\n\r\nexport default function () {\r\n  return (\r\n    <div>\r\n        <CartList />\r\n    </div>\r\n  )\r\n}\r\n"],"names":[],"mappings":";;;;;AAAA;AACA;;;;AAEe;IACb,qBACE,8OAAC;kBACG,cAAA,8OAAC,8JAAQ;;;;;;;;;;AAGjB","debugId":null}}]
+}

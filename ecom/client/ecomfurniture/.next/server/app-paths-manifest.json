@@ -1,0 +1,5 @@
+{
+  "/(withHeadFoot)/page": "app/(withHeadFoot)/page.js",
+  "/(withoutHeadFoot)/register/page": "app/(withoutHeadFoot)/register/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js"
+}

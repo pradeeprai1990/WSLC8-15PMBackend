@@ -1,0 +1,9 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
+    {"offset": {"line": 15, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/Sayeed/Desktop/next/furniture/src/app/components/home/HomeBanner.jsx"],"sourcesContent":["import React from 'react'\r\n\r\nexport default function HomeBanner() {\r\n  return (\r\n    <div>HomeBanner</div>\r\n  )\r\n}\r\n"],"names":[],"mappings":";;;;;AAAA;;;AAEe,SAAS;IACtB,qBACE,8OAAC;kBAAI;;;;;;AAET","debugId":null}},
+    {"offset": {"line": 36, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/Sayeed/Desktop/next/furniture/src/app/components/home/HomeCollection.jsx"],"sourcesContent":["import React from 'react'\r\n\r\nexport default function HomeCollection() {\r\n  return (\r\n    <div>HomeCollection</div>\r\n  )\r\n}\r\n"],"names":[],"mappings":";;;;;AAAA;;;AAEe,SAAS;IACtB,qBACE,8OAAC;kBAAI;;;;;;AAET","debugId":null}},
+    {"offset": {"line": 57, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/Sayeed/Desktop/next/furniture/src/app/page.js"],"sourcesContent":["import Image from \"next/image\";\nimport HomeBanner from \"./components/home/HomeBanner\";\nimport HomeCollection from \"./components/home/HomeCollection\";\n\nexport default function Home() {\n  return (\n    <>\n     <HomeBanner />\n     <HomeCollection />\n    </>\n  );\n}\n"],"names":[],"mappings":";;;;;AAAA;AACA;AACA;;;;;AAEe,SAAS;IACtB,qBACE;;0BACC,8OAAC,0JAAU;;;;;0BACX,8OAAC,8JAAc;;;;;;;AAGpB","debugId":null}}]
+}
