@@ -1,0 +1,10 @@
+[
+  {
+    "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?\\/my-dashboard(\\\\.json)?[\\/#\\?]?$",
+    "originalSource": "/my-dashboard"
+  },
+  {
+    "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?\\/wishlist(\\\\.json)?[\\/#\\?]?$",
+    "originalSource": "/wishlist"
+  }
+]

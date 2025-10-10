@@ -1,0 +1,7 @@
+{
+  "/(withHeadFoot)/login/page": "app/(withHeadFoot)/login/page.js",
+  "/(withHeadFoot)/my-dashboard/page": "app/(withHeadFoot)/my-dashboard/page.js",
+  "/(withHeadFoot)/page": "app/(withHeadFoot)/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js"
+}

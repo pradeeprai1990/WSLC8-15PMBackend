@@ -1,0 +1,28 @@
+{
+  "pages": {
+    "/(withHeadFoot)/contact-us/page": [
+      "static/chunks/26e15_next_dist_5b96cc6b._.js",
+      "static/chunks/580d7_backend_ecom_client_ecomfurniture_src_app_favicon_ico_mjs_70f1c570._.js",
+      "static/chunks/26e15_next_dist_client_components_builtin_global-error_71d24065.js",
+      "static/chunks/[root-of-the-server]__fe24ffa1._.css",
+      "static/chunks/8fd4e_19-04-2025_New folder (7)_backend_ecom_client_ecomfurniture_src_app_b6f02c00._.js",
+      "static/chunks/26e15_react-icons_fa_index_mjs_bab9ebe9._.js",
+      "static/chunks/26e15_react-icons_fa6_index_mjs_c0af1cd7._.js",
+      "static/chunks/26e15_react-icons_io_index_mjs_59db4398._.js",
+      "static/chunks/26e15_react-icons_lib_5679bc1d._.js",
+      "static/chunks/26e15_@reduxjs_toolkit_dist_redux-toolkit_modern_mjs_bc458ec8._.js",
+      "static/chunks/26e15_6fef845b._.js",
+      "static/chunks/580d7_backend_ecom_client_ecomfurniture_src_app_(withHeadFoot)_layout_71d24065.js",
+      "static/chunks/b4f54_ecom_client_ecomfurniture_src_app_(withHeadFoot)_contact-us_page_1a992662.js",
+      "static/chunks/[turbopack]_browser_dev_hmr-client_hmr-client_ts_e492f822._.js",
+      "static/chunks/26e15_next_dist_compiled_react-dom_19a8d5f1._.js",
+      "static/chunks/26e15_next_dist_compiled_next-devtools_index_ad4f615c.js",
+      "static/chunks/26e15_next_dist_compiled_0bc6da30._.js",
+      "static/chunks/26e15_next_dist_client_1022d9b7._.js",
+      "static/chunks/26e15_next_dist_30bf2a34._.js",
+      "static/chunks/26e15_@swc_helpers_cjs_ace59715._.js",
+      "static/chunks/3d860_New folder_19-04-2025_New folder (7)_backend_ecom_client_ecomfurniture_a0ff3932._.js",
+      "static/chunks/88e7d_New folder_19-04-2025_New folder (7)_backend_ecom_client_ecomfurniture_f04f5e9e._.js"
+    ]
+  }
+}

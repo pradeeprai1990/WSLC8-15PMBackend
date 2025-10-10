@@ -20,12 +20,15 @@ export default function ViewColor() {
      let [limit, setLimit] = useState(5)
     let [totalPages,settotalPages] = useState(0) //3
     let apiBaseUrl = import.meta.env.VITE_APIBASEURL
+    let [searchTitle,setSearchtitle]=useState('')
+
 
     let getColor = () => {
         axios.get(`${apiBaseUrl}color/view`, {
             params: {
                 page: currentPage,
-                limit
+                limit,
+                searchTitle
             }
         })
             .then((res) => res.data)
@@ -120,8 +123,10 @@ export default function ViewColor() {
             <ToastContainer />
             <BreadCrumb funObj={funObj} />
             <div className={`my-[20px] border border-gray-300 rounded-[5px] p-[20px] flex items-center gap-[15px] ${search ? ' ' : 'hidden'} `}>
-                <input type=' text' className='p-[8px] text-[14px] text-gray-[300px] rounded-[5px] border border-gray-300 w-[250px]' placeholder='search here' />
-                <div className='bg-blue-400 rounded-[5px] p-[8px] cursor-pointer hover:bg-black border hover:border-red-500 duration-300'><FaSearchengin className='text-white ' /></div>
+                
+                <input onChange={(e)=>setSearchtitle(e.target.value)}  type=' text' className='p-[8px] text-[14px] text-gray-[300px] rounded-[5px] border border-gray-300 w-[250px]' placeholder='search here' />
+           
+                <button onClick={()=>getColor()} className='bg-blue-400 rounded-[5px] p-[8px] cursor-pointer hover:bg-black border hover:border-red-500 duration-300'><FaSearchengin className='text-white ' /></button>
             </div>
             <div className='border border-gray-500 rounded-[5px]  '>
                 <div className='p-[20px] flex justify-between items-center bg-gray-300 rounded-[5px]'>

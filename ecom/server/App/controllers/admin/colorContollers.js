@@ -68,9 +68,27 @@ let colorView = async (req, res) => {
         skip=(req.query.page-1)*limit
         
     }
-    let colorData = await colorModel.find().skip(skip).limit(limit) //5
+    let searchObj={}
+    if(req.query.searchTitle){
+        // searchObj['colorName']= {
+        //     $regex:req.query.searchTitle,
+        //     $options:"i"
+        // }
+        
+         searchObj=   {
+                $or: [
+                    { colorName: { $regex:req.query.searchTitle,$options:"i"} },  // field1 > 10
+                    { colorCode:  { $regex:req.query.searchTitle,$options:"i"}  }       // field2 == "value"
+                ]
+            }
+        
+        //==
+    }
+    //searchObj={ colorName: { $regex:'Dark' ,  $options:'i  }  }
 
-    let colorDatalength = await colorModel.find() //[20]
+    let colorData = await colorModel.find(searchObj).skip(skip).limit(limit) //5
+
+    let colorDatalength = await colorModel.find(searchObj) //[20]
 
     let obj = {
         status: 1,
