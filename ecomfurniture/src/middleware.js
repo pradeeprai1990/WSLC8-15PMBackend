@@ -1,5 +1,5 @@
   import { NextResponse } from 'next/server';
-  import Cookies from "js-cookie"
+
   export function middleware(request) {
 
        if( ! request.cookies.get('USER') ){
@@ -19,9 +19,10 @@
     //   }
 
       // Continue to the next handler if no action is taken
+      
       return NextResponse.next();
     }
 
      export const config = {
-      matcher: ['/my-dashboard','/wishlist'], // Apply middleware to /dashboard and /admin routes
+      matcher: ['/my-dashboard','/wishlist','/contact-us'], // Apply middleware to /dashboard and /admin routes
     };

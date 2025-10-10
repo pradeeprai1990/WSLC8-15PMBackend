@@ -6,12 +6,14 @@ import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getAuth } from "firebase/auth";
+import { app } from '@/config/fireBaseConfig'
 export default function Login() {
 
-    let loginUser=useSelector((store)=>store.user.user)
+    let loginUser = useSelector((store) => store.user.user)
 
-    let dispatch=useDispatch()
+    let dispatch = useDispatch()
     let [userData, setUserData] = useState({
         userEmail: '',
         userPassword: '',
@@ -21,15 +23,15 @@ export default function Login() {
     let apiBaseurl = process.env.NEXT_PUBLIC_APIBASEURL
     let login = (e) => {
         e.preventDefault()
-        
+
         axios.post(`${apiBaseurl}user/login`, userData)
             .then((res) => res.data)
             .then((finalres) => {
                 if (finalres.status) {
                     // console.log(finalres.user);
-                    let userObj={
-                        id:finalres.user._id,
-                        userName:finalres.user.userName
+                    let userObj = {
+                        id: finalres.user._id,
+                        userName: finalres.user.userName
                     }
 
                     dispatch(getUser(userObj))
@@ -41,17 +43,69 @@ export default function Login() {
         // setForm(false)
     }
 
-     let getValueorSetValue=(e)=>{
-        let obj={...userData}
-        obj[e.target.name]=e.target.value
+    let getValueorSetValue = (e) => {
+        let obj = { ...userData }
+        obj[e.target.name] = e.target.value
         setUserData(obj)
     }
 
-    useEffect(()=>{
-        if(loginUser){
+    useEffect(() => {
+        if (loginUser) {
             redirect('/my-dashboard')
         }
-    },[loginUser])
+    }, [loginUser])
+
+
+    const provider = new GoogleAuthProvider();
+    const auth = getAuth(app);
+
+    let googleLogin = () => {
+        alert("Hello")
+        signInWithPopup(auth, provider)
+            .then((result) => {
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                const credential = GoogleAuthProvider.credentialFromResult(result);
+                const token = credential.accessToken;
+                // The signed-in user info.
+                const user = result.user;
+                console.log(user);
+                // Google Login User Data Store in MYDB
+                 //Data USER INSERT 
+                 //Email ID Google LOGIN KYa wo Humere DB 
+                 //USER.email == apne DB Check 
+                 //USer data
+
+                //  let userObj = {
+                //         id: finalres.user._id,
+                //         userName: finalres.user.userName
+                //     }
+
+                // dispatch(getUser(userObj))
+
+                 //USER.email == apne DB Check  False
+                 //New User Create -->
+                //  let userObj = {
+                //         id: finalres.user._id,
+                //         userName: finalres.user.userName
+                //     }
+
+                // dispatch(getUser(userObj))
+
+
+                // IdP data available using getAdditionalUserInfo(result)
+                // ...
+            }).catch((error) => {
+                // Handle Errors here.
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // The email of the user's account used.
+                const email = error.customData.email;
+                // The AuthCredential type that was used.
+                const credential = GoogleAuthProvider.credentialFromError(error);
+                // ...
+            });
+    }
+
 
     return (
         <div className='bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 flex items-center justify-center min-h-screen'>
@@ -63,14 +117,15 @@ export default function Login() {
                     </center>
 
                     <form onSubmit={login}>
-                        <input type="email" onChange={getValueorSetValue} name='userEmail'   placeholder="Email" className="w-full mb-4 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" required />
-                        <input type="password" onChange={getValueorSetValue}  name='userPassword' placeholder="Password" className="w-full mb-6 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" required />
+                        <input type="email" onChange={getValueorSetValue} name='userEmail' placeholder="Email" className="w-full mb-4 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" required />
+                        <input type="password" onChange={getValueorSetValue} name='userPassword' placeholder="Password" className="w-full mb-6 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" required />
                         <button type="submit" className="w-full bg-purple-500 text-white py-2 md:py-3 rounded-lg font-semibold hover:bg-purple-600 transition duration-200">Log In</button>
 
                         <p className="text-center text-gray-600 mt-6">
                             Don’t have an account? <Link href={'/register'} className="text-purple-500 hover:underline">Sign Up</Link>
                         </p>
                     </form>
+                    <button onClick={googleLogin} className='bg-blue-400 mt-3 p-3 w-[100%] text-white'>Google Login</button>
                 </div>
             </div>
         </div>
