@@ -1,8 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
-    {"offset": {"line": 15, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/Sayeed/Desktop/next/furniture/src/app/common/Breadcrumb.jsx"],"sourcesContent":["import Link from 'next/link'\r\nimport React from 'react'\r\n\r\nexport default function Breadcrumb({ pageName }) {\r\n    return (\r\n        <div className='py-5 bg-green-100'>\r\n            <h1 className='text-center font-bold text-[40px]'>{pageName}</h1>\r\n            <div className='text-center'><Link href={'/'}>Home</Link> {\">\"} {pageName}</div>\r\n        </div>\r\n    )\r\n}\r\n"],"names":[],"mappings":";;;;;AAAA;AACA;;;;AAEe,SAAS,WAAW,EAAE,QAAQ,EAAE;IAC3C,qBACI,8OAAC;QAAI,WAAU;;0BACX,8OAAC;gBAAG,WAAU;0BAAqC;;;;;;0BACnD,8OAAC;gBAAI,WAAU;;kCAAc,8OAAC,uKAAI;wBAAC,MAAM;kCAAK;;;;;;oBAAW;oBAAE;oBAAI;oBAAE;;;;;;;;;;;;;AAG7E","debugId":null}},
-    {"offset": {"line": 69, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/Sayeed/Desktop/next/furniture/src/app/login/page.js"],"sourcesContent":["import React from 'react'\r\nimport Breadcrumb from '../common/Breadcrumb'\r\n\r\nexport default function Login() {\r\n    let pageName = 'My Account'\r\n    return (\r\n        <div>\r\n            <Breadcrumb pageName={pageName} />\r\n        </div>\r\n    )\r\n}\r\n"],"names":[],"mappings":";;;;;AAAA;AACA;;;;AAEe,SAAS;IACpB,IAAI,WAAW;IACf,qBACI,8OAAC;kBACG,cAAA,8OAAC,8IAAU;YAAC,UAAU;;;;;;;;;;;AAGlC","debugId":null}}]
-}

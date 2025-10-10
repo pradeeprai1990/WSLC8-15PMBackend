@@ -1,3 +1,0 @@
-{
-  "/(withHeadFoot)/product/[...pid]/page": "app/(withHeadFoot)/product/[...pid]/page.js"
-}

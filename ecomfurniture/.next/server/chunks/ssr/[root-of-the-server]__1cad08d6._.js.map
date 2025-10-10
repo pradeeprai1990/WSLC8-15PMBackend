@@ -1,8 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
-    {"offset": {"line": 15, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/Sayeed/Desktop/next/furniture/src/app/product/ProductFilter.jsx"],"sourcesContent":["import React from 'react'\r\n\r\nexport default function ProductFilter() {\r\n  return (\r\n    <div>ProductFilter</div>\r\n  )\r\n}\r\n"],"names":[],"mappings":";;;;;AAAA;;;AAEe,SAAS;IACtB,qBACE,8OAAC;kBAAI;;;;;;AAET","debugId":null}},
-    {"offset": {"line": 36, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/Sayeed/Desktop/next/furniture/src/app/product/page.js"],"sourcesContent":["import React from 'react'\r\nimport ProductFilter from './ProductFilter'\r\n\r\nexport default function Products() {\r\n  return (\r\n    <div>\r\n        <div className='max-w-[1320px] mx-auto mt-[20px] grid grid-cols-[20%_auto] gap-5'>\r\n         <ProductFilter />   \r\n         <ProductFilter />   \r\n        </div>\r\n    </div>\r\n  )\r\n}\r\n"],"names":[],"mappings":";;;;;AAAA;AACA;;;;AAEe,SAAS;IACtB,qBACE,8OAAC;kBACG,cAAA,8OAAC;YAAI,WAAU;;8BACd,8OAAC,kJAAa;;;;;8BACd,8OAAC,kJAAa;;;;;;;;;;;;;;;;AAIvB","debugId":null}}]
-}

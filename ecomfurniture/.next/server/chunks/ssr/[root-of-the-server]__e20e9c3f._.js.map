@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
-    {"offset": {"line": 15, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/Sayeed/Desktop/next/furniture/src/app/product/%5Bpid%5D/page.js"],"sourcesContent":["import React from 'react'\r\n\r\nexport default async function ProductDetails(data) {\r\n  let { pid } = await data.params;\r\n\r\n  return (\r\n    <div>ProductDetails</div>\r\n  )\r\n}\r\n"],"names":[],"mappings":";;;;;AAAA;;;AAEe,eAAe,eAAe,IAAI;IAC/C,IAAI,EAAE,GAAG,EAAE,GAAG,MAAM,KAAK,MAAM;IAE/B,qBACE,8OAAC;kBAAI;;;;;;AAET","debugId":null}}]
-}
