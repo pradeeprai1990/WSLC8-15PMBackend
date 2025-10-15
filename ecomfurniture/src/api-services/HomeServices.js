@@ -1,10 +1,27 @@
 import axios from "axios"
+ let apiBaseurl = process.env.NEXT_PUBLIC_APIBASEURL
+let  categoryApi  = () => {
+    return axios.get(`${apiBaseurl}home/category`)
+        .then((apiRes) => apiRes.data)
+        .then((finalData) => finalData.category)
+}
 
-let bannerApi = () => {
+let homeproductApi = (catId) => {
+   
+    
+    return axios.get(`${apiBaseurl}home/product/${catId}`)
+        .then((apiRes) => apiRes.data)
+        .then((finalData) => finalData)
+}
+
+
+
+let bannerApi= () => {
     return axios.get(`https://dummyjson.com/products`)
         .then((apiRes) => apiRes.data)
         .then((finalData) => finalData.products.slice(0, 5))
 }
+
 
 let homeCollectionApi = () => {
     let finalData = [
@@ -25,4 +42,4 @@ let homeCollectionApi = () => {
     return finalData
 }
 
-export { bannerApi, homeCollectionApi }
+export {homeproductApi, bannerApi, homeCollectionApi,categoryApi }

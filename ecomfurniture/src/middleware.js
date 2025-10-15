@@ -24,5 +24,5 @@
     }
 
      export const config = {
-      matcher: ['/my-dashboard','/wishlist','/contact-us'], // Apply middleware to /dashboard and /admin routes
+      matcher: ['/my-dashboard'], // Apply middleware to /dashboard and /admin routes
     };

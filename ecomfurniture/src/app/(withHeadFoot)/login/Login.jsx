@@ -34,7 +34,7 @@ export default function Login() {
                         userName: finalres.user.userName
                     }
 
-                    dispatch(getUser(userObj))
+                    dispatch(getUser({user:userObj,token:finalres.token}))
                 }
 
             })

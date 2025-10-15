@@ -3,9 +3,10 @@ import { productApi } from '@/api-services/ProductServices'
 import ProductCart from '@/app/common/ProductCart'
 import React, { useState } from 'react'
 
-export default function HomeProducts({ productData }) {
+export default function HomeProducts({ productData, categoryData }) {
 
-  let [products, setProducts] = useState(productData)
+  let [products, setProducts] = useState(productData.product)
+  let [category, setCategory] = useState(categoryData)
   let [catName, setCatName] = useState('smartphones')
 
   let handleChnage = async (category) => {
@@ -19,15 +20,17 @@ export default function HomeProducts({ productData }) {
       <div className="relative flex items-center justify-center">
         <div className="absolute w-full border-t border-gray-200"></div>
         <div className="relative z-10 bg-white flex">
-          <button onClick={() => handleChnage('smartphones')} className={`px-6 py-2 border ${catName=='smartphones'?'border-red-300 text-red-400':'border-gray-200'} font-semibold`}>
-            Smartphones
-          </button>
-          <button onClick={() => handleChnage('beauty')} className={`px-6 py-2 border ${catName=='beauty'?'border-red-300 text-red-400':'border-gray-200'} font-semibold`}>
-            Beauty
-          </button>
-          <button onClick={() => handleChnage('furniture')} className={`px-6 py-2 border ${catName=='furniture'?'border-red-300 text-red-400':'border-gray-200'} font-semibold`}>
-            Furniture
-          </button>
+          {
+            category.map((obj, index) => {
+              return (
+                <button key={index} onClick={() => handleChnage('smartphones')} className={`px-6 py-2 border ${catName == 'smartphones' ? 'border-red-300 text-red-400' : 'border-gray-200'} font-semibold`}>
+                  {obj.categoryName}
+                </button>
+              )
+            })
+          }
+
+
         </div>
       </div>
 
@@ -36,7 +39,12 @@ export default function HomeProducts({ productData }) {
           {
             products.map((data, index) => {
               return (
-                <ProductCart key={index} data={data} link={`/product/${data.id}`} />
+                <ProductCart
+                  key={index}
+                  data={data}
+                  imagePath={productData.staticPath}
+                  link={`/product/${data.id}`}
+                />
               )
             }
             )

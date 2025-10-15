@@ -20,6 +20,7 @@ App.use("/admin",adminRoutes)
 App.use("/uploads/category",express.static("uploads/category"))
 App.use("/uploads/subcategory",express.static("uploads/subcategory"))
 App.use("/uploads/subsubcategory",express.static("uploads/subsubcategory"))
+App.use("/uploads/product",express.static("uploads/product"))
 // App.use("uploads/product",express.static("/uploads/product"))
 //http://localhost:8000
 mongoose.connect(process.env.DBCONNECTION)

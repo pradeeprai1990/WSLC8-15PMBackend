@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const { userModel } = require("../../models/userModel");
 const saltRounds = 10;
 let userOTP = new Map()
-
+let jwt = require('jsonwebtoken');
 let sendOTP = async (req, res) => {
 
     let { userEmail } = req.body;
@@ -79,10 +79,19 @@ let userLogin = async (req, res) => {
         let dbuserPassword = checkEmail.userPassword
         //Check Password
         let checkPassword = bcrypt.compareSync(userPassword, dbuserPassword); // true
+
+
+        //Create Token
+
+        let token = jwt.sign({ id: checkEmail._id }, process.env.TOKENKEY);
+
+
+
         if (checkPassword) {
-            resObj={
-                status:1,
-                user:checkEmail
+            resObj = {
+                status: 1,
+                user: checkEmail,
+                token
             }
         }
         else {
@@ -102,4 +111,52 @@ let userLogin = async (req, res) => {
     res.send(resObj)
 }
 
-module.exports = { sendOTP, createUser, userLogin }
+
+let changePassword = async (req, res) => {
+    let { id, oldPasswprd, newPassword, confirmPassword } = req.body
+    let checkUser = await userModel.findOne({ _id: id })
+
+    let dbPass = checkUser.userPassword
+
+    let oldPasswordCheck = bcrypt.compareSync(oldPasswprd, dbPass); // true
+    let resObj
+    if (oldPasswordCheck) {
+        if (newPassword == confirmPassword) {
+            //Update
+            const hash = bcrypt.hashSync(newPassword, saltRounds);
+
+            let passUpdateRes = await userModel.updateOne(
+                {
+                    _id: id
+                },
+                {
+                    $set: {
+                        userPassword: hash
+                    }
+                }
+            )
+            resObj = {
+                status: 1,
+                msg: "Password Changed",
+                passUpdateRes
+            }
+        }
+        else {
+            resObj = {
+                status: 0,
+                msg: "New Pass or Confirm Not Matched"
+            }
+        }
+    }
+    else {
+        resObj = {
+            status: 0,
+            msg: "Invalid Old  Password"
+        }
+    }
+
+
+
+    res.send(resObj)
+}
+module.exports = { sendOTP, createUser, userLogin, changePassword }

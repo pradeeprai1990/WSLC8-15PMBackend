@@ -7,21 +7,28 @@ import HomeBestSellingProducts from "./components/home/HomeBestSellingProducts";
 import HomePolicy from "./components/home/HomePolicy";
 import HomeOurCustomerSay from "./components/home/HomeOurCustomerSay";
 import HomeNewsletter from "./components/home/HomeNewsletter";
-import { bannerApi, homeCollectionApi } from "@/api-services/HomeServices";
+import { bannerApi, categoryApi, homeCollectionApi, homeproductApi } from "@/api-services/HomeServices";
 import { productApi } from "@/api-services/ProductServices";
 
 export default async function Home() {
 
   let bannerData = await bannerApi()
   let homeCollectionData = homeCollectionApi()
-  let productData = await productApi()
+
+  let categoryData=await categoryApi()
+
+  
+   let productData = await homeproductApi(categoryData[0]._id)
+ 
+   
+  
   return (
     <>
       <HomeBanner bannerData={bannerData}/>
       <HomeCollection homeCollectionData={homeCollectionData}/>
-      <HomeProducts productData={productData}/>
+      <HomeProducts categoryData={categoryData} productData={productData}/>
       <HomeNewTrendingCollections />
-      <HomeBestSellingProducts productData={productData} />
+      {/* <HomeBestSellingProducts productData={productData} /> */}
       <HomePolicy />
       <HomeOurCustomerSay />
       <HomeNewsletter />
