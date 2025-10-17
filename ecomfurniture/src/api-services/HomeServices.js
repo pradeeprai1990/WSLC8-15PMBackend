@@ -1,17 +1,27 @@
 import axios from "axios"
  let apiBaseurl = process.env.NEXT_PUBLIC_APIBASEURL
+
+
 let  categoryApi  = () => {
     return axios.get(`${apiBaseurl}home/category`)
         .then((apiRes) => apiRes.data)
         .then((finalData) => finalData.category)
 }
 
+
+
+
 let homeproductApi = (catId) => {
-   
+    
+
+  
     
     return axios.get(`${apiBaseurl}home/product/${catId}`)
         .then((apiRes) => apiRes.data)
-        .then((finalData) => finalData)
+        .then((finalData) => {
+          
+            return finalData
+        } )
 }
 
 

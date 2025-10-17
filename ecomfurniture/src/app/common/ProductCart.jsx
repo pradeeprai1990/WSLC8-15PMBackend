@@ -8,8 +8,7 @@ import { addCart, deleteCart } from '../redux/slice/cartSlice';
 
 export default function ProductCart({ data,imagePath, link }) {
 
-    console.log(data);
-    
+ 
     // let {cart, setCart} = useContext(cartContext)
     
     // let cart = useSelector((myStore)=>myStore.myCart.cart)

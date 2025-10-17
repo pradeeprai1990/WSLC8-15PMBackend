@@ -1,19 +1,26 @@
 "use client"
-import { productApi } from '@/api-services/ProductServices'
+
+import { homeproductApi } from '@/api-services/HomeServices'
 import ProductCart from '@/app/common/ProductCart'
 import React, { useState } from 'react'
 
 export default function HomeProducts({ productData, categoryData }) {
 
+
+
   let [products, setProducts] = useState(productData.product)
   let [category, setCategory] = useState(categoryData)
-  let [catName, setCatName] = useState('smartphones')
+
 
   let handleChnage = async (category) => {
-    let data = await productApi(category)
-    setProducts(data)
-    setCatName(category)
+    console.log(category); //Cat ID
+    
+    let data = await homeproductApi(category)
+    setProducts(data.product ?? [])
+   
   }
+
+
 
   return (
     <>
@@ -23,7 +30,7 @@ export default function HomeProducts({ productData, categoryData }) {
           {
             category.map((obj, index) => {
               return (
-                <button key={index} onClick={() => handleChnage('smartphones')} className={`px-6 py-2 border ${catName == 'smartphones' ? 'border-red-300 text-red-400' : 'border-gray-200'} font-semibold`}>
+                <button key={index} onClick={() => handleChnage(obj._id)} className={`px-6 py-2 border border-red-300 text-red-400`}>
                   {obj.categoryName}
                 </button>
               )

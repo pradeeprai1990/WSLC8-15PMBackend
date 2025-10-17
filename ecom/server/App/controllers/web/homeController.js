@@ -31,4 +31,19 @@ let getProducts=async (req,res)=>{
 
 }
 
-module.exports={getProducts,getCategory}
+
+
+let getBestsellingproduct=async (req,res)=>{
+    
+    let product=await productModel.find({productStatus:true,bestSelling:true})
+    let resObj={
+        status:1,
+        product,
+        staticPath:process.env.PRODUCTIMAGEPATH,
+    }
+
+    res.send(resObj)
+
+}
+
+module.exports={getProducts,getCategory,getBestsellingproduct}

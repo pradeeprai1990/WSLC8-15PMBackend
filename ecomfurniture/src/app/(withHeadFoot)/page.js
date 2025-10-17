@@ -15,11 +15,14 @@ export default async function Home() {
   let bannerData = await bannerApi()
   let homeCollectionData = homeCollectionApi()
 
-  let categoryData=await categoryApi()
+  let categoryData=await categoryApi() //[ {men},{women},{kids} ]
 
   
    let productData = await homeproductApi(categoryData[0]._id)
+   //Men Data
  
+
+
    
   
   return (
@@ -28,7 +31,7 @@ export default async function Home() {
       <HomeCollection homeCollectionData={homeCollectionData}/>
       <HomeProducts categoryData={categoryData} productData={productData}/>
       <HomeNewTrendingCollections />
-      {/* <HomeBestSellingProducts productData={productData} /> */}
+       <HomeBestSellingProducts /> 
       <HomePolicy />
       <HomeOurCustomerSay />
       <HomeNewsletter />
